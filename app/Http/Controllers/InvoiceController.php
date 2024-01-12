@@ -13,7 +13,7 @@ class InvoiceController extends Controller
         return response()->json($invoices, 200);
     }
 
-    public function singleInvoice($id)
+    public function singleProduct($id)
     {
         $invoice = Invoice::find($id);
 
@@ -27,7 +27,7 @@ class InvoiceController extends Controller
     public function create(Request $request)
     {
         $validatedData = $request->validate([
-            'invoice_no' => 'required',
+            // 'invoice_no' => 'required',
             'invoice_date' => 'required|date',
             'due_date' => 'required|date',
             'customer_id' => 'required|exists:customers,id',
@@ -46,7 +46,7 @@ class InvoiceController extends Controller
         if (!$invoice) {
             return response()->json(["message" => "Invoice not found"], 404);
         }
-        
+
         $invoice->delete();
 
         return response()->json("Invoice Deleted Succesfully!",201);

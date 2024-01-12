@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
@@ -22,13 +23,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-//route for admin dashboard like create,edit and delete
+//api for admin dashboard like create,edit and delete
 Route::controller(UserController::class)->group(function () {
     Route::get('admin', 'index');
     Route::post('login', 'login');
 });
 
-// route defined for invoice
+// api defined for invoice
 Route::controller(InvoiceController::class)->group(function () {
     Route::get('invoices', 'index');
     Route::get('invoice/{id}', 'singleInvoice');
@@ -36,7 +37,15 @@ Route::controller(InvoiceController::class)->group(function () {
     Route::post('invoice/create', 'create');
 });
 
-// route defined for invoice
+// api defined for invoice
 Route::controller(CustomerController::class)->group(function () {
     Route::get('customers', 'index');
+});
+
+// api defined for product
+Route::controller(ProductController::class)->group(function () {
+    Route::get('products', 'index');
+    Route::get('product/{id}', 'singleProduct');
+    Route::delete('product/{id}', 'destroy');
+    Route::post('product/create', 'create');
 });

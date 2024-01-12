@@ -19,7 +19,7 @@ class InvoiceFactory extends Factory
     {
         $customer = Customer::inRandomOrder()->first();
         return [
-            'invoice_no'=>$this->faker->numberBetween(11111,99999),
+            // 'invoice_no'=>$this->faker->numberBetween(11111,99999),
             'invoice_date' => $this->faker->date,
             'due_date' => $this->faker->date,
             'customer_id' => $customer->id,
