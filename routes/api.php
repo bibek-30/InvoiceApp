@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\InvoiceController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -30,4 +31,12 @@ Route::controller(UserController::class)->group(function () {
 // route defined for invoice
 Route::controller(InvoiceController::class)->group(function () {
     Route::get('invoices', 'index');
+    Route::get('invoice/{id}', 'singleInvoice');
+    Route::delete('invoice/{id}', 'destroy');
+    Route::post('invoice/create', 'create');
+});
+
+// route defined for invoice
+Route::controller(CustomerController::class)->group(function () {
+    Route::get('customers', 'index');
 });
