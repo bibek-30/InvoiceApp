@@ -12,4 +12,10 @@ class CustomerController extends Controller
         $customer = Customer::all();
         return response()->json($customer, 200);
     }
+
+    public function count()
+    {
+        $totalCustomers = Customer::count();
+        return response()->json(['total_customers' => $totalCustomers], 200);
+    }
 }

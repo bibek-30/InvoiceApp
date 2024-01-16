@@ -39,7 +39,7 @@ class InvoiceController extends Controller
 
         $invoice = Invoice::create($validatedData);
 
-        return response()->json($invoice,200);
+        return response()->json($invoice, 200);
     }
 
     public function store(Request $request, $id)
@@ -158,5 +158,18 @@ class InvoiceController extends Controller
         return response()->json(['invoices' => $invoices], 200);
     }
 
+    public function getTotalRevenue()
+    {
+        $totalRevenue = Invoice::sum('total_amount');
 
+        return response()->json(['total_revenue' => $totalRevenue], 200);
+    }
+
+    public function getTotalInvoicesForCurrentMonth()
+    {
+        $totalInvoicesForCurrentMonth = Invoice::whereMonth('invoice_date', now()->month)
+            ->count();
+
+        return response()->json(['total_invoices_for_current_month' => $totalInvoicesForCurrentMonth], 200);
+    }
 }

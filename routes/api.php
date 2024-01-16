@@ -38,11 +38,14 @@ Route::controller(InvoiceController::class)->group(function () {
     Route::post('customers/{customerId}/invoices', 'store');
     Route::get('invoiceItem/{invoiceId}', 'getInvoiceItems');
     Route::get('customers/{customerId}/invoices', 'getInvoicesForCustomer');
+    Route::get('totalRevenue','getTotalRevenue');
+    Route::get('totalOrder','getTotalInvoicesForCurrentMonth');
 });
 
 // api defined for invoice
 Route::controller(CustomerController::class)->group(function () {
     Route::get('customers', 'index');
+    Route::get('customer/count', 'count');
 });
 
 // api defined for product
@@ -51,4 +54,6 @@ Route::controller(ProductController::class)->group(function () {
     Route::get('product/{id}', 'singleProduct');
     Route::delete('product/{id}', 'destroy');
     Route::post('product/create', 'create');
+    Route::get('totalCount/product', 'indexCount');
+
 });

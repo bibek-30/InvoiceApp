@@ -12,6 +12,11 @@ class ProductController extends Controller
         $product = Product::all();
         return response()->json($product, 200);
     }
+    public function indexCount()
+    {
+        $product = Product::count();
+        return response()->json(["count" => $product, "status"=> 200]);
+    }
 
     public function singleProduct($id)
     {
@@ -34,7 +39,7 @@ class ProductController extends Controller
 
         $product = Product::create($validatedData);
 
-        return response()->json($product,200);
+        return response()->json($product, 200);
     }
 
     public function destroy($id)
@@ -46,7 +51,8 @@ class ProductController extends Controller
 
         $product->delete();
 
-        return response()->json("Product Deleted Succesfully!",201);
-
+        return response()->json("Product Deleted Succesfully!", 201);
     }
+
+
 }
