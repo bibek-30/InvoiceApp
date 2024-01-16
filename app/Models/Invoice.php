@@ -21,4 +21,20 @@ class Invoice extends Model
         'total_amount',
         'status'
     ];
+
+    public function items()
+    {
+        return $this->hasMany(InvoiceItem::class, 'invoice_id');
+    }
+
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class);
+    }
+
+    public function updateTotal()
+    {
+        $this->total = $this->items->sum('subtotal');
+        $this->save();
+    } 
 }

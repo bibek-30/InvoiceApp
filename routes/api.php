@@ -34,7 +34,10 @@ Route::controller(InvoiceController::class)->group(function () {
     Route::get('invoices', 'index');
     Route::get('invoice/{id}', 'singleInvoice');
     Route::delete('invoice/{id}', 'destroy');
-    Route::post('invoice/create', 'create');
+    // Route::post('invoice/create', 'create');
+    Route::post('customers/{customerId}/invoices', 'store');
+    Route::get('invoiceItem/{invoiceId}', 'getInvoiceItems');
+    Route::get('customers/{customerId}/invoices', 'getInvoicesForCustomer');
 });
 
 // api defined for invoice
